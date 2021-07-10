@@ -108,20 +108,10 @@ h6 {
 
 .movie-scroller {
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: hidden;
   padding-top: 4px;
   white-space: nowrap;
-  height: 400px;
-}
-
-.movie-scroller:hover {
-  overflow-x: auto;
-}
-
-@media only screen and (max-width: 1023px) {
-  .movie-scroller {
-    overflow-x: auto;
-  }
+  height: 100%;
 }
 </style>

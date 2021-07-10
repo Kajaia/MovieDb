@@ -1,11 +1,11 @@
 <template>
-  <div class="my-4" v-show="movies">
-    <h2 class="title-decoration">Similar movies</h2>
+  <div class="my-4" v-show="crew">
+    <h5 class="text-c-light fw-bold">Production</h5>
     <div class="row">
       <div class="movie-scroller">
         <div
-          class="col-6 col-md-3 col-lg-2 my-2 mx-2"
-          v-for="movie in movies"
+          class="col-6 col-md-4 col-lg-2 my-2 mx-2"
+          v-for="movie in crew"
           :key="movie.id"
         >
           <div class="card border-0 rounded-3 bg-transparent">
@@ -56,12 +56,12 @@
             />
             <div class="card-body text-wrap">
               <h6 class="fw-bold mb-1">
-                <a
+                <router-link
                   class="title-link stretched-link"
-                  :href="'/movie/' + movie.id"
+                  :to="{ name: 'Movie', params: { id: movie.id } }"
                 >
                   {{ movie.title }}
-                </a>
+                </router-link>
               </h6>
               <p class="mb-0 lh-1">
                 <small class="text-muted">
@@ -79,19 +79,19 @@
 <script>
 import APIServices from "../services/APIServices";
 export default {
-  name: "SimilarMovies",
+  name: "PersonCrew",
   props: {
     id: String,
   },
   data() {
     return {
-      movies: [],
+      crew: [],
     };
   },
   created() {
-    APIServices.getSimilarMovies(this.id)
+    APIServices.getPersonKnownFor(this.id)
       .then((response) => {
-        this.movies = response.data.results;
+        this.crew = response.data.crew;
       })
       .catch((error) => {
         console.log(error);
@@ -99,5 +99,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

@@ -20,34 +20,91 @@
         :alt="person.name"
         loading="lazy"
       />
+      <div class="mt-3 d-none d-md-block">
+        <h5 class="text-c-light fw-bold">Personal info</h5>
+        <div class="mt-2" v-show="person.known_for_department">
+          <h6 class="text-c-light fw-bold">Known for</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.known_for_department }}
+          </p>
+        </div>
+        <div class="mt-2" v-show="person.birthday">
+          <h6 class="text-c-light fw-bold">Birthday</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.birthday }}
+          </p>
+        </div>
+        <div class="mt-2" v-show="person.place_of_birth">
+          <h6 class="text-c-light fw-bold">Place of birth</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.place_of_birth }}
+          </p>
+        </div>
+        <div class="mt-2" v-show="person.also_known_as">
+          <h6 class="text-c-light fw-bold">Also known as</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.also_known_as }}
+          </p>
+        </div>
+      </div>
     </div>
     <div class="col-md-8 my-2">
       <h1 class="text-c-light fw-bold">
         {{ person.name }}
       </h1>
-      <p class="mb-0 text-c-light">
-        {{ person.birthday }}
-        <span v-show="person.place_of_birth">
-          • {{ person.place_of_birth }}
-        </span>
-      </p>
-      <p class="mt-3 mb-0 text-muted fst-italic" v-show="person.tagline">
-        {{ person.tagline }}
-      </p>
+      <div class="mt-3 d-sm-block d-md-none">
+        <h5 class="text-c-light fw-bold">Personal info</h5>
+        <div class="mt-2" v-show="person.known_for_department">
+          <h6 class="text-c-light fw-bold">Known for</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.known_for_department }}
+          </p>
+        </div>
+        <div class="mt-2" v-show="person.birthday">
+          <h6 class="text-c-light fw-bold">Birthday</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.birthday }}
+          </p>
+        </div>
+        <div class="mt-2" v-show="person.place_of_birth">
+          <h6 class="text-c-light fw-bold">Place of birth</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.place_of_birth }}
+          </p>
+        </div>
+        <div class="mt-2" v-show="person.also_known_as">
+          <h6 class="text-c-light fw-bold">Also known as</h6>
+          <p class="mb-0 text-c-light">
+            {{ person.also_known_as }}
+          </p>
+        </div>
+      </div>
       <div class="mt-3" v-show="person.biography">
-        <h5 class="text-c-light fw-bold">Bio</h5>
+        <h5 class="text-c-light fw-bold">Biography</h5>
         <p class="mb-0 text-c-light">
           {{ person.biography }}
         </p>
       </div>
-      <KnownFor :id="id" />
+      <KnownForActing
+        v-show="person.known_for_department == 'Acting'"
+        :id="id"
+      />
+      <KnownForProduction
+        v-show="person.known_for_department == 'Production'"
+        :id="id"
+      />
     </div>
+    <PersonCast :id="id" />
+    <PersonCrew :id="id" />
   </div>
 </template>
 
 <script>
 import APIServices from "../services/APIServices";
-import KnownFor from "../components/KnownFor.vue";
+import KnownForActing from "../components/KnownForActing.vue";
+import KnownForProduction from "../components/KnownForProduction.vue";
+import PersonCast from "../components/PersonCast.vue";
+import PersonCrew from "../components/PersonCrew.vue";
 
 export default {
   name: "PersonDetail",
@@ -55,7 +112,10 @@ export default {
     id: String,
   },
   components: {
-    KnownFor,
+    KnownForActing,
+    KnownForProduction,
+    PersonCast,
+    PersonCrew,
   },
   data() {
     return {

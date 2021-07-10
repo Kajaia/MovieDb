@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4">
+  <div class="my-4" v-show="images">
     <h2 class="title-decoration">Gallery</h2>
     <div class="row">
       <div

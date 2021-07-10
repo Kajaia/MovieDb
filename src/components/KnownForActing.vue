@@ -1,11 +1,11 @@
 <template>
-  <div class="my-4" v-show="movies">
-    <h2 class="title-decoration">Similar movies</h2>
+  <div class="my-4" v-show="known">
+    <h5 class="text-c-light fw-bold">Known for</h5>
     <div class="row">
       <div class="movie-scroller">
         <div
-          class="col-6 col-md-3 col-lg-2 my-2 mx-2"
-          v-for="movie in movies"
+          class="col-4 col-md-4 col-lg-2 my-2 mx-2"
+          v-for="movie in known.slice(0, 8)"
           :key="movie.id"
         >
           <div class="card border-0 rounded-3 bg-transparent">
@@ -37,7 +37,7 @@
             </span>
             <img
               v-if="movie.poster_path"
-              height="280"
+              height="190"
               class="w-100 cover rounded-3 shadow"
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
               :alt="movie.title"
@@ -45,7 +45,7 @@
             />
             <img
               v-else
-              height="280"
+              height="190"
               class="w-100 cover rounded-3 shadow"
               :src="
                 'https://ui-avatars.com/api/?uppercase=true&bold=true&background=random&size=512&name=' +
@@ -56,12 +56,12 @@
             />
             <div class="card-body text-wrap">
               <h6 class="fw-bold mb-1">
-                <a
+                <router-link
                   class="title-link stretched-link"
-                  :href="'/movie/' + movie.id"
+                  :to="{ name: 'Movie', params: { id: movie.id } }"
                 >
                   {{ movie.title }}
-                </a>
+                </router-link>
               </h6>
               <p class="mb-0 lh-1">
                 <small class="text-muted">
@@ -79,19 +79,19 @@
 <script>
 import APIServices from "../services/APIServices";
 export default {
-  name: "SimilarMovies",
+  name: "KnownForActing",
   props: {
     id: String,
   },
   data() {
     return {
-      movies: [],
+      known: [],
     };
   },
   created() {
-    APIServices.getSimilarMovies(this.id)
+    APIServices.getPersonKnownFor(this.id)
       .then((response) => {
-        this.movies = response.data.results;
+        this.known = response.data.cast;
       })
       .catch((error) => {
         console.log(error);
@@ -99,5 +99,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
