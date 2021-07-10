@@ -40,16 +40,22 @@
           {{ person.biography }}
         </p>
       </div>
+      <KnownFor :id="id" />
     </div>
   </div>
 </template>
 
 <script>
 import APIServices from "../services/APIServices";
+import KnownFor from "../components/KnownFor.vue";
+
 export default {
   name: "PersonDetail",
   props: {
     id: String,
+  },
+  components: {
+    KnownFor,
   },
   data() {
     return {

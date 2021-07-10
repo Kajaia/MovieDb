@@ -9,6 +9,32 @@
           :key="movie.id"
         >
           <div class="card border-0 rounded-3 bg-transparent">
+            <span
+              class="badge bg-success rounded-pill shadow position-absolute m-2"
+              v-if="movie.vote_average >= 8"
+            >
+              {{ movie.vote_average * 10 + "%" }}
+            </span>
+            <span
+              class="
+                badge
+                bg-warning
+                text-dark
+                rounded-pill
+                shadow
+                position-absolute
+                m-2
+              "
+              v-else-if="movie.vote_average < 8 && movie.vote_average >= 5"
+            >
+              {{ movie.vote_average * 10 + "%" }}
+            </span>
+            <span
+              class="badge bg-danger rounded-pill shadow position-absolute m-2"
+              v-else
+            >
+              {{ movie.vote_average * 10 + "%" }}
+            </span>
             <img
               v-if="movie.poster_path"
               height="280"
