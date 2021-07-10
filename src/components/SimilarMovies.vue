@@ -10,7 +10,7 @@
         >
           <div class="card border-0 rounded-3 bg-transparent">
             <img
-              v-if="movie.poster_path != null"
+              v-if="movie.poster_path"
               height="280"
               class="w-100 cover rounded-3 shadow"
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"

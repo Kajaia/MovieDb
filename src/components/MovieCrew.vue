@@ -8,9 +8,12 @@
         :key="person.id"
       >
         <h6 class="fw-bold mb-1">
-          <a class="title-link" href="#!">
+          <router-link
+            class="title-link"
+            :to="{ name: 'Person', params: { id: person.id } }"
+          >
             {{ person.name }}
-          </a>
+          </router-link>
         </h6>
         <p class="mb-0 lh-1">
           <small class="text-muted">

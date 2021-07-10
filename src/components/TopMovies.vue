@@ -36,7 +36,7 @@
               {{ movie.vote_average * 10 + "%" }}
             </span>
             <img
-              v-if="movie.poster_path != ''"
+              v-if="movie.poster_path"
               height="280"
               class="w-100 cover rounded-3 shadow"
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"

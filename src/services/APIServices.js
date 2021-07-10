@@ -27,6 +27,9 @@ export default {
   getSimilarMovies(id) {
     return apiClient.get("/movie/" + id + "/similar" + apiKey);
   },
+  getPerson(id) {
+    return apiClient.get("/person/" + id + apiKey);
+  },
   getPopularMovies() {
     return apiClient.get("/movie/popular" + apiKey);
   },

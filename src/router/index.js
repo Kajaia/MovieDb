@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import MovieDetail from "../views/MovieDetail.vue";
+import PersonDetail from "../views/PersonDetail.vue";
 
 const routes = [
   {
@@ -13,6 +14,12 @@ const routes = [
     name: "Movie",
     props: true,
     component: MovieDetail,
+  },
+  {
+    path: "/person/:id",
+    name: "Person",
+    props: true,
+    component: PersonDetail,
   },
 ];
 

@@ -48,15 +48,17 @@
         {{ movie.vote_average * 10 + "%" }}
       </span>
       <img
-        v-if="movie.poster_path != ''"
-        class="w-100 rounded-3 shadow"
+        v-if="movie.poster_path"
+        height="540"
+        class="w-100 cover rounded-3 shadow"
         :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
         :alt="movie.title"
         loading="lazy"
       />
       <img
         v-else
-        class="w-100 rounded-3 shadow"
+        height="540"
+        class="w-100 cover rounded-3 shadow"
         :src="
           'https://ui-avatars.com/api/?uppercase=true&bold=true&background=random&size=512&name=' +
           movie.title
@@ -71,18 +73,18 @@
       </h1>
       <p class="mb-0 text-c-light">
         {{ movie.release_date }}
-        <span v-show="movie.genres != []">
+        <span v-show="movie.genres">
           •
           <span v-for="genre in movie.genres" :key="genre.id"
             >{{ genre.name }},
           </span>
         </span>
-        <span v-show="movie.runtime != ''"> • {{ movie.runtime }} min</span>
+        <span v-show="movie.runtime"> • {{ movie.runtime }} min</span>
       </p>
-      <p class="mt-3 mb-0 text-muted fst-italic" v-show="movie.tagline != ''">
+      <p class="mt-3 mb-0 text-muted fst-italic" v-show="movie.tagline">
         {{ movie.tagline }}
       </p>
-      <div class="mt-3" v-show="movie.overview != ''">
+      <div class="mt-3" v-show="movie.overview">
         <h5 class="text-c-light fw-bold">Overview</h5>
         <p class="mb-0 text-c-light">
           {{ movie.overview }}
