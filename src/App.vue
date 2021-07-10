@@ -1,17 +1,39 @@
 <template>
-  <div class="navbar navbar-expand-md navbar-dark bg-c-secondary-dark shadow">
+  <div class="navbar navbar-expand-sm navbar-light bg-c-primary shadow">
     <div class="container py-1">
       <router-link class="navbar-brand" :to="{ name: 'Home' }">
         MovieDb
       </router-link>
-      <ul class="navbar-nav ms-auto">
-        <router-link class="nav-item nav-link" :to="{ name: 'Home' }">
-          Home
-        </router-link>
-      </ul>
+      <button
+        class="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <router-link class="nav-item nav-link" :to="{ name: 'Home' }">
+            Home
+          </router-link>
+        </ul>
+      </div>
     </div>
   </div>
-  <router-view />
+  <div class="container my-5">
+    <router-view />
+  </div>
+  <div class="footer">
+    <div class="container my-4">
+      <div class="text-center text-muted">
+        <small> © All rights reserved. </small>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
@@ -40,16 +62,29 @@
 }
 /* /Scroll bar */
 
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
+}
+
 .text-c-light {
   color: var(--light);
 }
 
-.bg-c-dark {
-  background-color: var(--dark);
+.bg-c-primary {
+  background-color: var(--primary);
 }
 
-.bg-c-secondary-dark {
-  background-color: #274259;
+.bg-c-dark {
+  background-color: var(--dark);
 }
 
 .title-decoration {
@@ -67,12 +102,17 @@
   color: var(--primary);
 }
 
+.cover {
+  object-fit: cover;
+}
+
 .movie-scroller {
   display: flex;
   overflow-x: hidden;
+  overflow-y: hidden;
   padding-top: 4px;
   white-space: nowrap;
-  height: 420px;
+  height: 400px;
 }
 
 .movie-scroller:hover {

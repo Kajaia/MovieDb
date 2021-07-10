@@ -13,7 +13,7 @@ library.add(fas);
 
 import "@popperjs/core";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.bundle.js";
+import "bootstrap/dist/js/bootstrap.esm";
 
 createApp(App)
   .use(store)

@@ -12,6 +12,21 @@ const apiClient = axios.create({
 const apiKey = "?api_key=7580044e2306d04aa11e9d8bc46c01d3";
 
 export default {
+  getGenres() {
+    return apiClient.get("/genre/movie/list" + apiKey);
+  },
+  getMovie(id) {
+    return apiClient.get("/movie/" + id + apiKey);
+  },
+  getMovieCredits(id) {
+    return apiClient.get("/movie/" + id + "/credits" + apiKey);
+  },
+  getMovieImages(id) {
+    return apiClient.get("/movie/" + id + "/images" + apiKey);
+  },
+  getSimilarMovies(id) {
+    return apiClient.get("/movie/" + id + "/similar" + apiKey);
+  },
   getPopularMovies() {
     return apiClient.get("/movie/popular" + apiKey);
   },

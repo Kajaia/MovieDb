@@ -11,7 +11,7 @@
           <div class="card border-0 rounded-3 bg-transparent">
             <span
               class="badge bg-success rounded-pill shadow position-absolute m-2"
-              v-if="movie.vote_average > 7"
+              v-if="movie.vote_average >= 8"
             >
               {{ movie.vote_average * 10 + "%" }}
             </span>
@@ -25,7 +25,7 @@
                 position-absolute
                 m-2
               "
-              v-else-if="movie.vote_average < 7 && movie.vote_average > 4"
+              v-else-if="movie.vote_average < 8 && movie.vote_average >= 5"
             >
               {{ movie.vote_average * 10 + "%" }}
             </span>
@@ -37,22 +37,31 @@
             </span>
             <img
               v-if="movie.poster_path != ''"
-              class="rounded-3 shadow"
+              height="280"
+              class="w-100 cover rounded-3 shadow"
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
               :alt="movie.title"
+              loading="lazy"
             />
             <img
               v-else
-              class="rounded-3 shadow"
+              height="280"
+              class="w-100 cover rounded-3 shadow"
               :src="
                 'https://ui-avatars.com/api/?uppercase=true&bold=true&background=random&size=512&name=' +
                 movie.title
               "
               :alt="movie.title"
+              loading="lazy"
             />
             <div class="card-body text-wrap">
               <h6 class="fw-bold mb-1">
-                <a class="title-link" href="#!">{{ movie.title }}</a>
+                <router-link
+                  class="title-link stretched-link"
+                  :to="{ name: 'Movie', params: { id: movie.id } }"
+                >
+                  {{ movie.title }}
+                </router-link>
               </h6>
               <p class="mb-0 lh-1">
                 <small class="text-muted">
@@ -74,7 +83,7 @@ export default {
   name: "PopularMovies",
   data() {
     return {
-      upcomingMovies: {},
+      upcomingMovies: [],
     };
   },
   created() {

@@ -1,9 +1,7 @@
 <template>
-  <div class="container my-5">
-    <PopularMovies />
-    <TopMovies />
-    <UpcomingMovies />
-  </div>
+  <PopularMovies />
+  <TopMovies />
+  <UpcomingMovies />
 </template>
 
 <script>

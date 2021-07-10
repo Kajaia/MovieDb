@@ -1,42 +1,16 @@
 <template>
   <div class="my-4">
-    <h2 class="title-decoration">Popular movies</h2>
+    <h2 class="title-decoration">Similar movies</h2>
     <div class="row">
       <div class="movie-scroller">
         <div
           class="col-6 col-md-3 col-lg-2 my-2 mx-2"
-          v-for="movie in popularMovies"
+          v-for="movie in movies"
           :key="movie.id"
         >
           <div class="card border-0 rounded-3 bg-transparent">
-            <span
-              class="badge bg-success rounded-pill shadow position-absolute m-2"
-              v-if="movie.vote_average >= 8"
-            >
-              {{ movie.vote_average * 10 + "%" }}
-            </span>
-            <span
-              class="
-                badge
-                bg-warning
-                text-dark
-                rounded-pill
-                shadow
-                position-absolute
-                m-2
-              "
-              v-else-if="movie.vote_average < 8 && movie.vote_average >= 5"
-            >
-              {{ movie.vote_average * 10 + "%" }}
-            </span>
-            <span
-              class="badge bg-danger rounded-pill shadow position-absolute m-2"
-              v-else
-            >
-              {{ movie.vote_average * 10 + "%" }}
-            </span>
             <img
-              v-if="movie.poster_path != ''"
+              v-if="movie.poster_path != null"
               height="280"
               class="w-100 cover rounded-3 shadow"
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
@@ -56,12 +30,12 @@
             />
             <div class="card-body text-wrap">
               <h6 class="fw-bold mb-1">
-                <router-link
+                <a
                   class="title-link stretched-link"
-                  :to="{ name: 'Movie', params: { id: movie.id } }"
+                  :href="'/movie/' + movie.id"
                 >
                   {{ movie.title }}
-                </router-link>
+                </a>
               </h6>
               <p class="mb-0 lh-1">
                 <small class="text-muted">
@@ -77,19 +51,21 @@
 </template>
 
 <script>
-import APIServices from "../services/APIServices.js";
-
+import APIServices from "../services/APIServices";
 export default {
-  name: "PopularMovies",
+  name: "SimilarMovies",
+  props: {
+    id: String,
+  },
   data() {
     return {
-      popularMovies: [],
+      movies: [],
     };
   },
   created() {
-    APIServices.getPopularMovies()
+    APIServices.getSimilarMovies(this.id)
       .then((response) => {
-        this.popularMovies = response.data.results;
+        this.movies = response.data.results;
       })
       .catch((error) => {
         console.log(error);
@@ -98,4 +74,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style></style>
