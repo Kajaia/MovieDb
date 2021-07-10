@@ -1,11 +1,11 @@
 <template>
   <div class="my-4">
-    <h2 class="title-decoration">Popular movies</h2>
+    <h2 class="title-decoration">Upcoming movies</h2>
     <div class="row">
       <div class="movie-scroller">
         <div
           class="col-6 col-md-3 col-lg-2 my-2 mx-2"
-          v-for="movie in popularMovies"
+          v-for="movie in upcomingMovies"
           :key="movie.id"
         >
           <div class="card border-0 rounded-3 bg-transparent">
@@ -74,13 +74,13 @@ export default {
   name: "PopularMovies",
   data() {
     return {
-      popularMovies: {},
+      upcomingMovies: {},
     };
   },
   created() {
-    APIServices.getPopularMovies()
+    APIServices.getUpcomingMovies()
       .then((response) => {
-        this.popularMovies = response.data.results;
+        this.upcomingMovies = response.data.results;
       })
       .catch((error) => {
         console.log(error);

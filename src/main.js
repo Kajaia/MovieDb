@@ -6,10 +6,10 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import bootstrap from "bootstrap";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faUserSecret);
+library.add(fas);
 
 import "@popperjs/core";
 import "bootstrap/dist/css/bootstrap.css";
@@ -20,5 +20,5 @@ createApp(App)
   .use(router)
   .use(VueAxios, axios)
   .use(bootstrap)
-  .use(FontAwesomeIcon)
+  .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
