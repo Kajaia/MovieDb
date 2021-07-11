@@ -12,9 +12,6 @@ const apiClient = axios.create({
 const apiKey = "?api_key=7580044e2306d04aa11e9d8bc46c01d3";
 
 export default {
-  getGenres() {
-    return apiClient.get("/genre/movie/list" + apiKey);
-  },
   getMovie(id) {
     return apiClient.get("/movie/" + id + apiKey);
   },

@@ -2,35 +2,27 @@
   <div class="navbar navbar-expand-sm navbar-light bg-c-primary shadow">
     <div class="container py-1">
       <router-link class="navbar-brand" :to="{ name: 'Home' }">
+        <img
+          class="d-none d-md-inline"
+          height="32"
+          src="./assets/img/logo-dark.svg"
+          alt="MovieDb"
+        />
         MovieDb
       </router-link>
-      <button
-        class="navbar-toggler border-0"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto">
-          <router-link class="nav-item nav-link" :to="{ name: 'Home' }">
-            Home
-          </router-link>
-          <router-link class="nav-item nav-link" :to="{ name: 'Movies' }">
+      <ul class="navbar-nav ms-auto">
+        <div class="d-flex">
+          <router-link class="nav-item nav-link me-2" :to="{ name: 'Movies' }">
             Movies
           </router-link>
-          <router-link class="nav-item nav-link" :to="{ name: 'Tv' }">
+          <router-link class="nav-item nav-link me-2" :to="{ name: 'Tv' }">
             TV Shows
           </router-link>
           <router-link class="nav-item nav-link" :to="{ name: 'Persons' }">
             Actors
           </router-link>
-        </ul>
-      </div>
+        </div>
+      </ul>
     </div>
   </div>
   <div class="container my-5">
