@@ -1,18 +1,18 @@
 <template>
   <div class="my-4">
-    <h2 class="title-decoration">Popular movies</h2>
+    <h2 class="title-decoration">Popular TV Shows</h2>
     <div class="row">
       <div
         class="col-6 col-md-3 col-lg-2 my-2"
-        v-for="movie in movies"
-        :key="movie.id"
+        v-for="show in tv"
+        :key="show.id"
       >
         <div class="card border-0 rounded-3 bg-transparent">
           <span
             class="badge bg-success rounded-pill shadow position-absolute m-2"
-            v-if="movie.vote_average >= 8"
+            v-if="show.vote_average >= 8"
           >
-            {{ movie.vote_average * 10 + "%" }}
+            {{ show.vote_average * 10 + "%" }}
           </span>
           <span
             class="
@@ -24,22 +24,22 @@
               position-absolute
               m-2
             "
-            v-else-if="movie.vote_average < 8 && movie.vote_average >= 5"
+            v-else-if="show.vote_average < 8 && show.vote_average >= 5"
           >
-            {{ movie.vote_average * 10 + "%" }}
+            {{ show.vote_average * 10 + "%" }}
           </span>
           <span
             class="badge bg-danger rounded-pill shadow position-absolute m-2"
             v-else
           >
-            {{ movie.vote_average * 10 + "%" }}
+            {{ show.vote_average * 10 + "%" }}
           </span>
           <img
-            v-if="movie.poster_path"
+            v-if="show.poster_path"
             height="240"
             class="w-100 cover rounded-3 shadow"
-            :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            :alt="movie.title"
+            :src="'https://image.tmdb.org/t/p/w500' + show.poster_path"
+            :alt="show.name"
             loading="lazy"
           />
           <img
@@ -48,23 +48,23 @@
             class="w-100 cover rounded-3 shadow"
             :src="
               'https://ui-avatars.com/api/?uppercase=true&bold=true&background=random&size=512&name=' +
-              movie.title
+              show.name
             "
-            :alt="movie.title"
+            :alt="show.name"
             loading="lazy"
           />
           <div class="card-body text-wrap">
             <h6 class="fw-bold mb-1">
               <router-link
                 class="title-link stretched-link"
-                :to="{ path: '/movie/' + movie.id }"
+                :to="{ path: '/show/' + show.id }"
               >
-                {{ movie.title }}
+                {{ show.name }}
               </router-link>
             </h6>
-            <p class="mb-0 lh-1" v-show="movie.release_date">
+            <p class="mb-0 lh-1" v-show="show.first_air_date">
               <small class="text-muted">
-                {{ movie.release_date }}
+                {{ show.first_air_date }}
               </small>
             </p>
           </div>
@@ -78,16 +78,16 @@
 import APIServices from "../services/APIServices";
 
 export default {
-  name: "Movies",
+  name: "Tv",
   data() {
     return {
-      movies: [],
+      tv: [],
     };
   },
   created() {
-    APIServices.getPopularMovies()
+    APIServices.getPopularTv()
       .then((response) => {
-        this.movies = response.data.results;
+        this.tv = response.data.results;
       })
       .catch((error) => {
         console.log(error);

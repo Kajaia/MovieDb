@@ -45,4 +45,13 @@ export default {
   getUpcomingMovies() {
     return apiClient.get("/movie/upcoming" + apiKey);
   },
+  getPopularTv() {
+    return apiClient.get("/tv/popular" + apiKey);
+  },
+  getTvShow(id) {
+    return apiClient.get("/tv/" + id + apiKey);
+  },
+  getTvShowCredits(id) {
+    return apiClient.get("/tv/" + id + "/credits" + apiKey);
+  },
 };

@@ -12,9 +12,9 @@
           py-2
           px-3
         "
-        v-if="movie.vote_average >= 8"
+        v-if="show.vote_average >= 8"
       >
-        {{ movie.vote_average * 10 + "%" }}
+        {{ show.vote_average * 10 + "%" }}
       </span>
       <span
         class="
@@ -28,9 +28,9 @@
           py-2
           px-3
         "
-        v-else-if="movie.vote_average < 8 && movie.vote_average >= 5"
+        v-else-if="show.vote_average < 8 && show.vote_average >= 5"
       >
-        {{ movie.vote_average * 10 + "%" }}
+        {{ show.vote_average * 10 + "%" }}
       </span>
       <span
         class="
@@ -45,14 +45,14 @@
         "
         v-else
       >
-        {{ movie.vote_average * 10 + "%" }}
+        {{ show.vote_average * 10 + "%" }}
       </span>
       <img
-        v-if="movie.poster_path"
+        v-if="show.poster_path"
         height="540"
         class="w-100 cover rounded-3 shadow"
-        :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-        :alt="movie.title"
+        :src="'https://image.tmdb.org/t/p/w500' + show.poster_path"
+        :alt="show.name"
         loading="lazy"
       />
       <img
@@ -61,67 +61,63 @@
         class="w-100 cover rounded-3 shadow"
         :src="
           'https://ui-avatars.com/api/?uppercase=true&bold=true&background=random&size=512&name=' +
-          movie.title
+          show.name
         "
-        :alt="movie.title"
+        :alt="show.name"
         loading="lazy"
       />
     </div>
     <div class="col-md-8 my-2">
       <h1 class="text-c-light fw-bold">
-        {{ movie.title }}
+        {{ show.name }}
       </h1>
       <p class="mb-0 text-c-light">
-        {{ movie.release_date }}
-        <span v-show="movie.genres">
+        {{ show.first_air_date }}
+        <span v-show="show.genres">
           •
-          <span v-for="genre in movie.genres" :key="genre.id"
+          <span v-for="genre in show.genres" :key="genre.id"
             >{{ genre.name }},
           </span>
         </span>
-        <span v-show="movie.runtime"> • {{ movie.runtime }} min</span>
       </p>
-      <p class="mt-3 mb-0 text-muted fst-italic" v-show="movie.tagline">
-        {{ movie.tagline }}
+      <p class="mt-3 mb-0 text-muted fst-italic" v-show="show.tagline">
+        {{ show.tagline }}
       </p>
-      <div class="mt-3" v-show="movie.overview">
+      <div class="mt-3" v-show="show.overview">
         <h5 class="text-c-light fw-bold">Overview</h5>
         <p class="mb-0 text-c-light">
-          {{ movie.overview }}
+          {{ show.overview }}
         </p>
       </div>
-      <MovieCrew :id="id" />
+      <TvCrew :id="id" />
     </div>
+    <TvCast :id="id" />
   </div>
-  <MovieCast :id="id" />
-  <MovieImages :id="id" />
 </template>
 
 <script>
 import APIServices from "../services/APIServices";
-import MovieCast from "../components/MovieCast.vue";
-import MovieImages from "../components/MovieImages.vue";
-import MovieCrew from "../components/MovieCrew.vue";
+import TvCast from "../components/TvCast.vue";
+import TvCrew from "../components/TvCrew.vue";
 
 export default {
-  name: "MovieDetail",
+  name: "TvDetail",
   props: {
     id: String,
   },
   components: {
-    MovieCast,
-    MovieImages,
-    MovieCrew,
+    TvCast,
+    TvCrew,
   },
   data() {
     return {
-      movie: {},
+      show: {},
     };
   },
   created() {
-    APIServices.getMovie(this.id)
+    APIServices.getTvShow(this.id)
       .then((response) => {
-        this.movie = response.data;
+        this.show = response.data;
       })
       .catch((error) => {
         console.log(error);

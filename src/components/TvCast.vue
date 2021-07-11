@@ -53,7 +53,7 @@
 <script>
 import APIServices from "../services/APIServices";
 export default {
-  name: "MovieCast",
+  name: "TvCast",
   props: {
     id: String,
   },
@@ -63,7 +63,7 @@ export default {
     };
   },
   created() {
-    APIServices.getMovieCredits(this.id)
+    APIServices.getTvShowCredits(this.id)
       .then((response) => {
         this.cast = response.data.cast;
       })

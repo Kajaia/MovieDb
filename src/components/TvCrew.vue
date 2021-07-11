@@ -28,7 +28,7 @@
 <script>
 import APIServices from "../services/APIServices";
 export default {
-  name: "MovieCrew",
+  name: "TvCrew",
   props: {
     id: String,
   },
@@ -38,7 +38,7 @@ export default {
     };
   },
   created() {
-    APIServices.getMovieCredits(this.id)
+    APIServices.getTvShowCredits(this.id)
       .then((response) => {
         this.crew = response.data.crew;
       })

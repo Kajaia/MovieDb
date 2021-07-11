@@ -9,7 +9,7 @@
       >
         <div class="card border-0 rounded-3 bg-transparent">
           <img
-            v-if="person.profile_path != null"
+            v-if="person.profile_path"
             height="240"
             class="w-100 cover rounded-3 shadow"
             :src="'https://image.tmdb.org/t/p/w500' + person.profile_path"

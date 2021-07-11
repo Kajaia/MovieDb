@@ -4,6 +4,8 @@ import MovieDetail from "../views/MovieDetail.vue";
 import PersonDetail from "../views/PersonDetail.vue";
 import Persons from "../views/Persons.vue";
 import Movies from "../views/Movies.vue";
+import Tv from "../views/Tv.vue";
+import TvDetail from "../views/TvDetail.vue";
 
 const routes = [
   {
@@ -32,6 +34,17 @@ const routes = [
     name: "Person",
     props: true,
     component: PersonDetail,
+  },
+  {
+    path: "/tv",
+    name: "Tv",
+    component: Tv,
+  },
+  {
+    path: "/show/:id",
+    name: "Show",
+    props: true,
+    component: TvDetail,
   },
 ];
 

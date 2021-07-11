@@ -20,8 +20,14 @@
           <router-link class="nav-item nav-link" :to="{ name: 'Home' }">
             Home
           </router-link>
+          <router-link class="nav-item nav-link" :to="{ name: 'Movies' }">
+            Movies
+          </router-link>
+          <router-link class="nav-item nav-link" :to="{ name: 'Tv' }">
+            TV Shows
+          </router-link>
           <router-link class="nav-item nav-link" :to="{ name: 'Persons' }">
-            Persons
+            Actors
           </router-link>
         </ul>
       </div>
