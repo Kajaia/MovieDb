@@ -56,12 +56,12 @@
             />
             <div class="card-body text-wrap">
               <h6 class="fw-bold mb-1">
-                <a
+                <router-link
                   class="title-link stretched-link"
-                  :href="'/movie/' + movie.id"
+                  :to="{ name: 'Movie', params: { id: movie.id } }"
                 >
                   {{ movie.title }}
-                </a>
+                </router-link>
               </h6>
               <p class="mb-0 lh-1">
                 <small class="text-muted">

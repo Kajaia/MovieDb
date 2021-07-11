@@ -20,6 +20,9 @@
           <router-link class="nav-item nav-link" :to="{ name: 'Home' }">
             Home
           </router-link>
+          <router-link class="nav-item nav-link" :to="{ name: 'Persons' }">
+            Persons
+          </router-link>
         </ul>
       </div>
     </div>

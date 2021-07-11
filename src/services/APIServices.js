@@ -33,6 +33,9 @@ export default {
   getPersonKnownFor(id) {
     return apiClient.get("/person/" + id + "/movie_credits" + apiKey);
   },
+  getPopularPersons() {
+    return apiClient.get("/person/popular" + apiKey);
+  },
   getPopularMovies() {
     return apiClient.get("/movie/popular" + apiKey);
   },
