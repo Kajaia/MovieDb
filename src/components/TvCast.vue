@@ -30,12 +30,12 @@
             />
             <div class="card-body text-wrap">
               <h6 class="fw-bold mb-1">
-                <router-link
+                <a
                   class="title-link stretched-link"
-                  :to="{ name: 'Person', params: { id: person.id } }"
+                  :href="'/person/' + person.id"
                 >
                   {{ person.name }}
-                </router-link>
+                </a>
               </h6>
               <p class="mb-0 lh-1">
                 <small class="text-muted">

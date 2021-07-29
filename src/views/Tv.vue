@@ -55,12 +55,9 @@
           />
           <div class="card-body text-wrap">
             <h6 class="fw-bold mb-1">
-              <router-link
-                class="title-link stretched-link"
-                :to="{ path: '/show/' + show.id }"
-              >
+              <a class="title-link stretched-link" :href="'/show/' + show.id">
                 {{ show.name }}
-              </router-link>
+              </a>
             </h6>
             <p class="mb-0 lh-1" v-show="show.first_air_date">
               <small class="text-muted">

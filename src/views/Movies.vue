@@ -55,12 +55,9 @@
           />
           <div class="card-body text-wrap">
             <h6 class="fw-bold mb-1">
-              <router-link
-                class="title-link stretched-link"
-                :to="{ path: '/movie/' + movie.id }"
-              >
+              <a class="title-link stretched-link" :href="'/movie/' + movie.id">
                 {{ movie.title }}
-              </router-link>
+              </a>
             </h6>
             <p class="mb-0 lh-1" v-show="movie.release_date">
               <small class="text-muted">

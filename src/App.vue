@@ -1,7 +1,7 @@
 <template>
   <div class="navbar navbar-expand-sm navbar-light bg-c-primary shadow">
     <div class="container py-1">
-      <router-link class="navbar-brand" :to="{ name: 'Home' }">
+      <a class="navbar-brand" href="/">
         <img
           class="d-none d-md-inline"
           height="32"
@@ -9,18 +9,12 @@
           alt="MovieDb"
         />
         MovieDb
-      </router-link>
+      </a>
       <ul class="navbar-nav ms-auto">
         <div class="d-flex">
-          <router-link class="nav-item nav-link me-2" :to="{ name: 'Movies' }">
-            Movies
-          </router-link>
-          <router-link class="nav-item nav-link me-2" :to="{ name: 'Tv' }">
-            TV Shows
-          </router-link>
-          <router-link class="nav-item nav-link" :to="{ name: 'Persons' }">
-            Actors
-          </router-link>
+          <a class="nav-item nav-link me-2" href="/movies"> Movies </a>
+          <a class="nav-item nav-link me-2" href="/tv"> TV Shows </a>
+          <a class="nav-item nav-link" href="/persons"> Actors </a>
         </div>
       </ul>
     </div>
